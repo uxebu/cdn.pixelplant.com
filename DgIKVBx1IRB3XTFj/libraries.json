@@ -1,0 +1,56 @@
+{
+  "as3shim": {
+    "artifacts": {
+      "dist/as3shim.min.js": "as3shim-{{version}}.min.js"
+    },
+    "versions": [
+      "0.2.3",
+      "0.2.4",
+      "0.2.5",
+      "0.2.6"
+    ]
+  },
+  "as3vm": {
+    "artifacts": {
+      "dist/as3vm.min.js": "as3vm-{{version}}.min.js"
+    },
+    "versions": [
+      "0.3.1",
+      "0.3.2",
+      "0.3.3",
+      "0.3.4"
+    ]
+  },
+  "bonsai": {
+    "artifacts": {
+      "dist/bonsai.js": "bonsai-{{version}}.js",
+      "dist/bonsai.min.js": "bonsai-{{version}}.min.js",
+      "dist/bonsai.iframe.js": "bonsai.iframe-{{version}}.js",
+      "dist/bonsai.iframe.min.js": "bonsai.iframe-{{version}}.min.js"
+    },
+    "versions": [
+      "0.2.0",
+      "0.3.0",
+      "0.3.1",
+      "0.3.2",
+      "0.3.3"
+    ]
+  },
+  "bonsai-embed": {
+    "artifacts": {
+      "dist/embed.min.js": "bonsai-embed-{{version}}.min.js"
+    },
+    "versions": [
+      "0.1.0"
+    ]
+  },
+  "spareparts": {
+    "versions": [
+      "0.2.0",
+      "0.3.0",
+      "0.4.0",
+      "0.4.1",
+      "0.4.2"
+    ]
+  }
+}

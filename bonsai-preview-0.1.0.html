@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bonsai Preview</title>
+  </head>
+  <body style="width:100%;height:100%;padding:0;margin:0;overflow:hidden;">
+    <div id="player"></div>
+    <script>
+      /**
+       * Accepts querystring parameters via hash appended to URL:
+       * 
+       * - movieUrl: URL to the bonsai-movie.js [required]
+       * - width: width of the bonsai-movie (defaults to 300)
+       * - height: height of the bonsai-movie (defaults to 300)
+       * - transwfVersion: version of transwf (defaults to latest version)
+       * - runner: iframe|worker (defaults to iframe)
+       */
+      (function(){
+        function getSync(url) {
+          var xhr = new XMLHttpRequest;
+          xhr.open('GET', url, false);
+          xhr.send(null);
+          return xhr.responseText;
+        }
+
+        function getHashParams() {
+          // Also remove the query string
+          var hash = window.location.toString().split(/[#?]/)[1] || '';
+          var parts = hash.split(/[=&]/);
+          var hashObject = {};
+          for (var i = 0; i < parts.length; i+=2) {
+            hashObject[decodeURIComponent(parts[i])] = decodeURIComponent(parts[i+1]);
+          }
+          return hashObject;
+        }
+
+        function getLatestVersion(libraries) {
+          return Object.keys(libraries.transwf).sort(function(a, b) {
+            a = a.split('.').map(function(i){ return parseInt(i, 10);});
+            b = b.split('.').map(function(i){ return parseInt(i, 10);});
+            return a[0] < b[0] || a[1] < b[1] || a[2] < b[2] ? 1 : -1;
+          })[0]; 
+        }
+
+        function loadScript(url, callback) {
+          var s = document.createElement('script');
+          s.src = url;
+          document.documentElement.appendChild(s);
+          s.addEventListener('load', callback);
+        }
+
+        var params = getHashParams();
+        var libraries = JSON.parse(getSync('dependencies.json'));
+        var transwfVersion = params.transwfVersion || getLatestVersion(libraries);
+        var dependencies = libraries.transwf[transwfVersion];
+        var bonsaiVersion = dependencies['bonsai'];
+        var bonsaiRunner = params.runner && params.runner === 'worker' ? '' : '.iframe';
+        loadScript('bonsai' + bonsaiRunner + '-' + bonsaiVersion + '.min.js', function() {
+          var plugins = [
+            'spareparts-' + dependencies['spareparts'] + '.min.js',
+            'as3shim-' + dependencies['as3shim'] + '.min.js',
+            'as3vm-' + dependencies['as3vm'] + '.min.js',
+          ];
+          if (params && params.movieUrl) {
+            bonsai.run(document.getElementById('player'), params.movieUrl, {
+              plugins: plugins,
+              width: params.width || 300,
+              height: params.height || 300
+            });
+          }
+        });
+
+      })();
+    </script>
+  </body>
+</html>

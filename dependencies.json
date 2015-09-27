@@ -1,0 +1,40 @@
+{
+  "transwf": {
+    "0.2.9": {
+      "as3shim": "0.2.5",
+      "as3vm": "0.3.4",
+      "bonsai": "0.3.2",
+      "bonsai-embed": "0.1.0",
+      "spareparts": "0.4.1"
+    },
+    "0.2.10": {
+      "as3shim": "0.2.6",
+      "as3vm": "0.3.4",
+      "bonsai": "0.3.3",
+      "bonsai-embed": "0.1.0",
+      "spareparts": "0.4.2"
+    },
+    "0.2.11": {
+      "as3shim": "0.2.9",
+      "as3vm": "0.3.5",
+      "bonsai": "0.3.5",
+      "bonsai-embed": "0.1.0",
+      "spareparts": "0.4.2"
+    },
+    "0.2.12": {
+      "as3shim": "0.2.11",
+      "as3vm": "0.3.5",
+      "bonsai": "0.3.6",
+      "bonsai-embed": "0.1.0",
+      "spareparts": "0.4.3"
+    },
+    "0.2.13": {
+      "as3shim": "0.2.14",
+      "as3vm": "0.3.5",
+      "bonsai": "0.4.2",
+      "bonsai-embed": "0.1.2",
+      "spareparts": "0.4.3",
+      "transwf-runtime": "0.0.3"
+    }
+  }
+}

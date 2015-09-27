@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page_title }}</title>
+  </head>
+  <body style="width:100%;height:100%;padding:0;margin:0;overflow:hidden;">
+    <div id="player"></div>
+    <script src="{{ bonsai_embed_url }}"></script>
+    <script src="{{ bonsai_url }}"></script>
+    <script>
+      embed({
+        bonsaiUrl: '{{ bonsai_movie_url }}',
+        domNodeId: 'player',
+        height: {{ width }},
+        width: {{ height }},
+        allowEventDefaults: {{ allow_event_defaults }},
+        bonsaiLocation: '{{ bonsai_url }}',
+        bonsaiPlugins: [
+          {% for plugin in plugins %}
+            '{{ plugin.url }}'{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ],
+        swfUrl: '{{ swf_url }}',
+        swfVersion: '{{ swf_version }}',
+        parObj: {
+          pluginspage: 'http://www.macromedia.com/go/getflashplayer',
+          play: true,
+          menu: true,
+          quality: 'high',
+          scale: 'noscale',
+          wmode: 'transparent',
+          allowscriptaccess: 'always',
+          allowfullscreen: false
+        }
+      });
+    </script>
+  </body>
+</html>
